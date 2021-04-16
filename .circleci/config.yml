@@ -36,6 +36,7 @@ jobs:
       - node/install
       - checkout
       - aws-cli/setup
+      - aws-elastic-beanstalk/setup
       - run:
           name: Install Angular CLI Tools
           command: |
