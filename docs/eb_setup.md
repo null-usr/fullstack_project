@@ -1,11 +1,13 @@
 how to set up eb in your work directory
 
+eb use
+
 eb init
 in our case storefront-app
 https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/eb-cli3-configuration.html#eb-cli3-artifact
 edit .elasticbeanstalk/config.yml to contain 
 deploy:
-  artifact: path/to/buildartifact.zip
+  artifact: ./dist/Archive.zip
 in our case our Archive.zip
 
 npm run build/yarn build then

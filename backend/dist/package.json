@@ -10,14 +10,16 @@
     "dev": "db-migrate up --env dev && nodemon",
     "prod": "npm run build && db-migrate up --env prod && node ./dist/server.js",
     "prod:windows": "npm run build:windows && db-migrate up --env prod && node ./dist/server.js",
-    "clean": "rm -rf dist/ || true && db-migrate reset --env dev && db-migrate reset --env prod",
+    "clean": "rm -rf dist/ || true && db-migrate reset --env dev || true && db-migrate reset --env prod || true",
     "build": "npm run clean && npx tsc && cp package.json dist/package.json && cp .npmrc dist/.npmrc && cd dist && zip -r Archive.zip . && cd ..",
     "build-original": "npm run clean && npx tsc && cp -rf src/config dist/config && cp package.json dist/package.json && cd dist && zip -r Archive.zip . && cd ..",
     "build:windows": "npm run clean && npx tsc && cp package.json dist/package.json && cp .npmrc dist/.npmrc && cd dist && 7z a Archive.zip -r . && cd ..",
     "build:windows-original": "npm run clean && npx tsc && cp -rf src/config dist/config && cp package.json dist/package.json && cd dist && 7z a Archive.zip -r . && cd ..",
     "jasmine": "jasmine-ts || exit 0",
     "test": "ENV=dev npm run build && db-migrate up --env test && npm run jasmine && db-migrate reset --env test",
-    "tsc": "tsc"
+    "tsc": "tsc",
+    "deploy": "npm run build && chmod +x ./bin/deploy.sh && ./bin/deploy.sh",
+    "deploy:windows": "npm run build:windows && chmod +x ./bin/deploy.sh && sh ./bin/deploy.sh"
   },
   "author": "Udacity",
   "license": "ISC",
@@ -52,5 +54,9 @@
     "supertest": "^6.1.3",
     "ts-node": "^8.10.2",
     "tsc-watch": "^4.2.9"
+  },
+  "engines": {
+    "node": "14.15.4",
+    "npm": "6.14.10"
   }
 }
