@@ -36,11 +36,16 @@ jobs:
       - node/install
       - checkout
       - aws-cli/setup
-      - aws-elastic-beanstalk/setup
       - run:
           name: Install Angular CLI Tools
           command: |
             npm install -g @angular/cli
+      - run:
+          name: Install pip and EB
+          command: |
+            sudo apt-get -y -qq update
+            sudo apt-get install python3-pip python3-dev build-essential
+            sudo pip3 install awsebcli
       - run:
             name: Install Front-End Dependencies
             command: |
