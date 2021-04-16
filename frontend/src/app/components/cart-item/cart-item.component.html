@@ -1,0 +1,16 @@
+<div class="container">
+	<div class="row">
+		<div class="col-6 p-2 product-container text-center">
+			<img src={{product.url}} alt="" class="product-image">
+		</div>
+		<div class="col-6 p-2 product-container text-center">
+			<h4 class="">{{product.name}}</h4>
+			<p class="">{{product.price | currency}}</p>
+			<form #form="ngForm" action="">
+				<!-- On model change call the update cart amount function-->
+				<input [(ngModel)]="amount" (ngModelChange)="updateCartAmount([product,amount])" class="select-input" required type="number" min="0" max="10" value="{{amount}}" name="amount" >
+				<input type="submit" class="btn btn-failure" value="Remove from cart" (click)="removeFromCart(product)">
+			</form>
+		</div>
+	</div>
+</div>

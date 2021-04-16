@@ -1,0 +1,13 @@
+<!-- <ul>
+	<li *ngFor="let country of countryList">
+	  {{ country.name }} has {{ country.population }} people.
+	</li>
+</ul> -->
+
+<!-- iterate over the posts -->
+<div class="container">
+	<div class="row">
+		<app-product-item *ngFor="let product of products" [product]="product"></app-product-item>
+	</div>
+</div>
+<br>
