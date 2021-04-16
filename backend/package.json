@@ -11,7 +11,7 @@
     "prod": "npm run build && db-migrate up --env prod && node ./dist/server.js",
     "prod:windows": "npm run build:windows && db-migrate up --env prod && node ./dist/server.js",
     "clean": "rm -rf dist/ || true && db-migrate reset --env dev || true && db-migrate reset --env prod || true",
-    "build": "npm run clean && npx tsc && cp package.json dist/package.json && cp .npmrc dist/.npmrc && cd dist && ls && zip -r Archive.zip . && cd ..",
+    "build": "npm run clean && npx tsc && cp package.json dist/package.json && cp .npmrc dist/.npmrc && cd dist && ls -a && zip -r Archive.zip . && cd ..",
     "build-original": "npm run clean && npx tsc && cp -rf src/config dist/config && cp package.json dist/package.json && cd dist && zip -r Archive.zip . && cd ..",
     "build:windows": "npm run clean && npx tsc && cp package.json dist/package.json && cp .npmrc dist/.npmrc && cd dist && 7z a Archive.zip -r . && cd ..",
     "build:windows-original": "npm run clean && npx tsc && cp -rf src/config dist/config && cp package.json dist/package.json && cd dist && 7z a Archive.zip -r . && cd ..",
