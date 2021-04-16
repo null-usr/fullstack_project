@@ -37,7 +37,12 @@ and run
 	POSTGRES_TEST_DB=your_test_db_name
 	POSTGRES_USER=username
 	POSTGRES_PASSWORD=password
-	ENV=<test> or <dev>
+	AWS_DB_HOST=<your AWS DB Host Name>
+	AWS_DB_NAME=<your AWS DB Name>
+	AWD_DB_USER=<your AWS DB username>
+	AWS_DB_PASSWORD=<your AWS DB password>
+	AWS_DB_PORT=<your AWS DB Port>
+	ENV=<test> or <dev> or <prod>
 	BCRYPT_PASSWORD=your-bcrypt-password
 	SALT_ROUNDS=<integer>
 	TOKEN_SECRET=your_token_secret
