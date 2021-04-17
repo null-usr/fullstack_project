@@ -40,7 +40,7 @@ jobs:
             npm run backend:build
       #keep the changes of our build
       - persist_to_workspace:
-          root: public
+          root: . 
           paths:
           - '*'
   #Runs our tests, should be done after a build and install (both will probably fail)
@@ -48,7 +48,7 @@ jobs:
     executor: my-executor
     steps:
       - attach_workspace:
-          at: public
+          at: .
 
       - node/install
       - checkout
@@ -66,7 +66,7 @@ jobs:
       - image: "cimg/base:stable"
     steps:
       - attach_workspace:
-          at: public
+          at: .
       - node/install
       - checkout
       - aws-cli/setup
