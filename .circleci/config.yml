@@ -5,7 +5,6 @@ executors:
   my-executor:
     docker:
       - image: "cimg/base:stable"
-    working_directory: /tmp
 orbs:
   #Install the necessary orbs, the aws-elastic-beanstalk orb is a bit iffy
   node: circleci/node@4.1.0
