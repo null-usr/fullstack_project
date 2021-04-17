@@ -54,11 +54,11 @@ jobs:
       - run:
           name: Test Front-End
           command: |
-            npm run frontend:deploy
+            npm run frontend:test
       - run:
-          name: Deploy Back-End
+          name: Test Back-End
           command: |
-            npm run backend:deploy
+            npm run backend:test
   #Deploy our app to amazon s3 & EB
   deploy:
     docker:
@@ -79,6 +79,7 @@ jobs:
           name: Set Environment Variables
           command: |
             sleep 25
+            ls -a
             eb setenv AWD_DB_USER=$AWD_DB_USER AWS_ACCESS_KEY_ID=$AWS_ACCESS_KEY_ID AWS_DB_HOST=$AWS_DB_HOST \
             AWS_DB_NAME=$AWS_DB_NAME AWS_DB_PASSWORD=$AWS_DB_PASSWORD AWS_DB_PORT=$AWS_DB_PORT AWS_DEFAULT_REGION=$AWS_DEFAULT_REGION \
             AWS_SECRET_ACCESS_KEY=$AWS_SECRET_ACCESS_KEY BCRYPT_PASSWORD=$BCRYPT_PASSWORD ENV=$ENV SALT_ROUNDS=$SALT_ROUNDS TOKEN_SECRET=$TOKEN_SECRET
