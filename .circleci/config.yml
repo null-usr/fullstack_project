@@ -1,4 +1,11 @@
 version: 2.1
+
+#so that we can keep data
+executors:
+  my-executor:
+    docker:
+      - image: "cimg/base:stable"
+    working_directory: /tmp
 orbs:
   #Install the necessary orbs, the aws-elastic-beanstalk orb is a bit iffy
   node: circleci/node@4.1.0
@@ -11,8 +18,7 @@ dependencies:
 jobs:
   #This job just builds the project and installs dependencies, though it doesn't seem to hold between jobs
   build:
-    docker:
-      - image: "cimg/base:stable"
+    executor: my-executor
     steps:
       - node/install
       - checkout
@@ -34,8 +40,7 @@ jobs:
             npm run backend:build
   #Runs our tests, should be done after a build and install (both will probably fail)
   test:
-    docker:
-      - image: "cimg/base:stable"
+    executor: my-executor
     steps:
       - node/install
       - checkout
@@ -49,8 +54,7 @@ jobs:
             npm run backend:deploy
   #Deploy our app to amazon s3 & EB
   deploy:
-    docker:
-      - image: "cimg/base:stable"
+    executor: my-executor
     steps:
       - node/install
       - checkout
