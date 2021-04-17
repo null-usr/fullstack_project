@@ -4,7 +4,6 @@ executors:
   my-executor:
     docker:
       - image: "cimg/base:stable"
-    working_directory: ~/public
 
 orbs:
   #Install the necessary orbs, the aws-elastic-beanstalk orb is a bit iffy
@@ -48,7 +47,7 @@ jobs:
     executor: my-executor
     steps:
       - attach_workspace:
-          at: ~/public
+          at: .
 
       - node/install
       - checkout
@@ -66,7 +65,7 @@ jobs:
       - image: "cimg/base:stable"
     steps:
       - attach_workspace:
-          at: ~/public
+          at: .
       - node/install
       - checkout
       - aws-cli/setup
