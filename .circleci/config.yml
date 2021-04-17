@@ -4,7 +4,7 @@ executors:
   my-executor:
     docker:
       - image: "cimg/base:stable"
-    working_directory: /tmp
+    working_directory: ~/public
 
 orbs:
   #Install the necessary orbs, the aws-elastic-beanstalk orb is a bit iffy
