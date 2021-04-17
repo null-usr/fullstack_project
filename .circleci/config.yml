@@ -40,8 +40,8 @@ jobs:
             npm run backend:build
       #keep the changes of our build
       - persist_to_workspace:
-        root: public
-        paths:
+          root: public
+          paths:
           - '*'
   #Runs our tests, should be done after a build and install (both will probably fail)
   test:
