@@ -1,4 +1,11 @@
 version: 2.1
+#Trying out workspaces
+executors:
+  my-executor:
+    docker:
+      - image: "cimg/base:stable"
+    working_directory: /tmp
+
 orbs:
   #Install the necessary orbs, the aws-elastic-beanstalk orb is a bit iffy
   node: circleci/node@4.1.0
@@ -11,8 +18,7 @@ dependencies:
 jobs:
   #This job just builds the project and installs dependencies, though it doesn't seem to hold between jobs
   build:
-    docker:
-      - image: "cimg/base:stable"
+    executor: my-executor
     steps:
       - node/install
       - checkout
@@ -32,11 +38,18 @@ jobs:
           name: Back-end Build
           command: |
             npm run backend:build
+      #keep the changes of our build
+      - persist_to_workspace:
+        root: public
+        paths:
+          - '*'
   #Runs our tests, should be done after a build and install (both will probably fail)
   test:
-    docker:
-      - image: "cimg/base:stable"
+    executor: my-executor
     steps:
+      - attach_workspace:
+          at: public
+
       - node/install
       - checkout
       - run:
@@ -52,6 +65,8 @@ jobs:
     docker:
       - image: "cimg/base:stable"
     steps:
+      - attach_workspace:
+          at: public
       - node/install
       - checkout
       - aws-cli/setup
