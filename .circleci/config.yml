@@ -55,7 +55,7 @@ jobs:
       - node/install
       - checkout
       - aws-cli/setup
-      -aws-elastic-beanstalk/setup
+      - aws-elastic-beanstalk/setup
       - run:
           name: Deploy Back-End
           command: |
@@ -74,9 +74,10 @@ jobs:
             npm run frontend:deploy
 workflows:
   store-app-test:
+    jobs:
       - build
       - test:
-        requires:
+          requires:
             - build
   store-app:
     jobs:
