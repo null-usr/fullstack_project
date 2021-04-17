@@ -1,5 +1,5 @@
 version: 2.1
-#Trying out workspaces
+#Workspace to allow our build changes to persist
 executors:
   my-executor:
     docker:
@@ -45,6 +45,7 @@ jobs:
   #Runs our tests, should be done after a build and install (both will probably fail)
   test:
     executor: my-executor
+    #pull our build job changes into the current directory
     steps:
       - attach_workspace:
           at: .
@@ -63,6 +64,7 @@ jobs:
   deploy:
     docker:
       - image: "cimg/base:stable"
+    #pull our build job changes into the current directory
     steps:
       - attach_workspace:
           at: .
@@ -97,9 +99,6 @@ workflows:
   store-app-deploy:
     jobs:
       - build
-      - test:
-          requires:
-            - build
       - deploy:
           requires:
             - build
