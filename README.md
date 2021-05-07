@@ -1,5 +1,7 @@
 # Storefront
 
+![MyStore shopping flow](frontend/shoppingflow.gif)
+
 http://udagram-ntc-bucket.s3-website-us-east-1.amazonaws.com/
 
 This application is the combination of the previous projects in the Udacity Fullstack nanodegree. 
